@@ -48,18 +48,94 @@
   height:100px;
   background-color: #FFFFFF;
   padding: 0px 40px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+.chat-group {
+  font-size: 24px;
+  color: #333;
+  margin-top: 36px;
+}
+.chat-delete-btn {
+  margin-top:40px;
+}
+.chat-delete-btn a{
+  border: 1px solid darkred;
+  color:darkred;
+  padding: 20px;
+  text-decoration: none;
 }
 .chat-view {
   background-color: #FAFAFA;
   height: calc(100vh - 100px - 90px);
   padding: 46px 40px 0px;
+  overflow:scroll;
+}
+.chat-message{
+  margin-top: 10px 0 0 0;
+}
+.chat-user-date {
+  display: flex;
+}
+.user-name {
+  padding-right: 10px;
+  font-size: 16px;
+  color: #434A54;
+}
+.date {
+  font-size:12px;
+  color: #999;
+  padding-left: 10px;
+}
+.message {
+  margin-top: 10px;
+}
+.message-content {
+  font-size: 14px;
+  color: #434A54;
+  margin-bottom: 40px;
 }
 .chat-form {
   background-color: #DDDDDD;
   height: 90px;
   padding: 20px 40px;
+  display:flex;
+}
+.form-input {
+  background-color: white;
+  width: 100%;
+  display: flex;
+}
+.form-message {
+  border: none;
+  height: 50px;
+  width: 100%;
+  padding-left: 10px;
 
 }
+.form-submit {
+  background-color: #38AEF0;
+  border: none;
+  color: white;
+  font-size: 16px;
+  height: 50px;
+  margin-left: 15px;
+  padding: 0 20px;
+}
+.form-image {
+  font-size: 12px;
+  background-color: lightblue;
+  color: white;
+  padding: 12px;
+  width: 60px;
+  margin: 5px 10px;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+
 
 /* 問題１
 display: flex;は要素を横並びにする役割があります。今回は「side-bar」と「chat」が横並びになります。ポイントはwrapperにつけること。
@@ -93,4 +169,13 @@ text-decoration: none;は文字のアンダーラインを消す役割をする�
 
 /* 問題５
 チャットルームが増えて画面がはみ出すことを想定して、スクロールができるようにside-bar-mainにoverflow: scroll;がついている。
+*/
+
+/* 問題７
+overflowプロパティとは、親要素の範囲から子要素がはみ出た時に、どのように表示するのかを設定するプロパティのことです。
+送信されたメッセージの数が多くなった時に、画面をはみ出た部分をスクロールできるようにしたいので、overflow: scroll;のように設定している。
+*/
+
+/* 問題８
+フォーム内の要素は全て横並びなので、display:flex;を付与する。
 */
