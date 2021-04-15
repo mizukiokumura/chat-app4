@@ -1,0 +1,96 @@
+.wrapper {
+  display: flex;
+}
+.side-bar {
+  width: 300px;
+  background-color: #253141;
+  height: 100vh;
+}
+.side-bar-header {
+  background-color: #253141;
+  height: 100px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.user-name a{
+  font-size: 16px;
+  color: #FAFAFA;
+  text-decoration: none;
+}
+.chat-name a{
+  font-size: 10px;
+  color: deepskyblue;
+  padding: 14px;
+  border: 1px solid lightblue;
+  text-decoration: none;
+
+}
+.side-bar-main {
+  background-color: #2F3E51;
+  height: calc(100vh - 100px);
+  padding: 0px 20px;
+  overflow: scroll;
+}
+.room {
+  padding: 20px 0px 40px;
+}
+.room-name a {
+  text-decoration: none;
+  color: white;
+}
+.main-chat {
+  width: calc(100vw - 300px);
+  background-color: #ffffff;
+}
+.main-header {
+  height:100px;
+  background-color: #FFFFFF;
+  padding: 0px 40px;
+}
+.chat-view {
+  background-color: #FAFAFA;
+  height: calc(100vh - 100px - 90px);
+  padding: 46px 40px 0px;
+}
+.chat-form {
+  background-color: #DDDDDD;
+  height: 90px;
+  padding: 20px 40px;
+
+}
+
+/* 問題１
+display: flex;は要素を横並びにする役割があります。今回は「side-bar」と「chat」が横並びになります。ポイントはwrapperにつけること。
+pxは固定値なので、横幅は必ず300pxとなり「vh」は「viewport height」の略称で、相対的な高さを表す。開いているブラウザの高さの部分に応じて大きさが変わる。
+既に「side-bar=300px」と大きさは決まっているので、残ったchatの横幅は「全体の横幅- 300px」となる。
+「全体の横幅」というのは、表示される画面の幅に応じて変わる。
+ */
+
+ /* 問題２
+ chat-viewの高さは、headerとfooterの高さを引いた値です。height: calc(100vh - 190px);と記述しても同じ表示になります。しかし、
+ この場合だとコードを見返した時に１９０どこから持ってきたの？と分からないため、headerとfooterの高さを別で記述して
+ height: calc(100vh - 100px - 90px);としましょう。
+  */
+/* 問題３
+margin,paddingの書き方ですが、「margin(padding) + 値の数」によって上下左右の幅の取り方が異なります。
+padding : 0px; 上下左右に適応
+padding : 0px 0px; 上下と左右に適応
+padding: 0px 0px 0px; 上と左右と下に適応
+padding: 0px 0px 0px 0px; 上と右と下と左に適応
+*/
+
+/* 問題４
+justify-contentとは、flexが効いている要素(user-name,chat-name)の横方向のレイアウトを指定している。
+今回は「justify-content: space-between」なので、2つの要素の間隔を等間隔にしている。
+
+align-itemsとは、display: flex;により横向きの要素("user-name,chat-name")の縦方向のレイアウトを指定している。今回は
+centerなので、縦方向に中央揃えにする。
+
+text-decoration: none;は文字のアンダーラインを消す役割をする。
+*/
+
+/* 問題５
+チャットルームが増えて画面がはみ出すことを想定して、スクロールができるようにside-bar-mainにoverflow: scroll;がついている。
+*/
