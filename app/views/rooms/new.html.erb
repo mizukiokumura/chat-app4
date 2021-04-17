@@ -16,6 +16,13 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
+        <select name="room[user_ids][]">
+          <option>チャットするユーザーを選択してください</option>
+          <% User.where.not(id: current_user.id).each do |user| %>  <%# こんなやり方もあるんだなー %>
+            <option value=<%=user.id%>><%= user.name%></option>
+          <% end %>
+        </select>
+        <input name="room[user_ids][]" type="hidden" value=<%= cuuren_user.id %>>
       </div>
     </div>
     <div class='chat-room-form__field'>
@@ -26,3 +33,33 @@
     </div>
   <% end %>
 </div>
+
+<%# プルダウンの実装
+select要素
+select要素は、プルダウンのようなセレクトボックスを作成するための要素です。
+select要素のname属性に任意の値を指定することで、paramsをとうして、その値をコントローラーへ渡す事ができる。
+どのような選択肢にするかは、子要素としてoption要素を記述する事で設定する。 %>
+
+<%# option要素
+select要素の中に記述することで、プルダウンの選択肢になる要素です。 %>
+
+<%# モデル名.where("条件")と記述すると、条件に一致したレコードを「配列として」取得できる。
+このwhereメソッドに続けて「not」メソッドを追記すると、
+モデル名.where.not(条件)は、条件に一致した「レコード以外の値」を配列として取得できる。 %>
+
+<%# select要素のname属性にroom[user_ids][]を指定し、option要素のvalue属性にuser.idを指定しました。
+このように記述する事で、これまでとは異なる形でパラメーターが送信されるため、paramsは以下のようになります。
+{"room" => {"user_ids" => ["選択したユーザーのid"]}}
+room[user_ids]という記述は、キーに対する値という通常のパラメーターと異なり、値としてさらにハッシュを入子にすることを示すものです。
+{"room" => {"user_ids" => "値"}}
+続いて、末尾についた[]については、キーに対する値を「配列」として
+格納することを示すものです。これにより、1つのキーに対して、複数の値を受け取る事ができるようになります。
+{"room" => {"user_ids" => ["値"]}} %>
+
+<%# <input name="room[user_ids][]" type="hidden" value=<%= cuuren_user.id >>
+この記述で、現在ログイン中のユーザーがもつidをparamsに含める事ができる。
+type属性にhiddenを指定することで、画面上には表示されないinput要素を作成できます。
+そして、先程のselect要素と同様、name属性にroom[user_ids][]を指定し、room[user_ids]をキーに対する値を配列で
+受け取る仕組みです。value属性にはcurrent_user.idを指定しているため、room[user_ids]キーに対して、
+ログイン中のユーザーのidを配列として格納し、コントローラーへ送信する。この記述の結果、コントローラーへ送られるparamsは以下のようになる。
+{"room" => {"user_ids" => ["選択したユーザーのid", "現在ログインしているユーザーのid"]}} %>
