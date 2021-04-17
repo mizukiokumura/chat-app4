@@ -1,6 +1,6 @@
 <div class="side-bar-header">
   <div class="user-name">
-    <a herf="#">Tom</a>
+    <%= link_to current_user.name, edit_user_path(current_user)%>
   </div>
   <div class="chat-name">
     <a herf="#">チャットを作成する</a>
@@ -18,3 +18,11 @@
     </div>
   </div>
 </div>
+
+<%# 問題９
+「rails routes」コマンドを実行し、どのようなリンク先を指定すれば、該当のアクションが動くのかを確認する。
+ユーザー編集機能へのリンクはedeit_userが該当するのがわかるので、
+link_toのパスを、ログインしているユーザーの編集をするため、
+edit_user_path(current_user)と指定します。
+current_user.nameはログインしているユーザー名です。
+ユーザー名をクリックすると、usersコントローラーのeditアクションが実行され、編集ページに遷移できる。 %>
