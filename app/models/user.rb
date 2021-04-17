@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
 end
 
-問題１１
-Userモデルに、validates :name, presence: trueを追記します。
-nameカラムに、presence: trueを設けることで、からの場合はDBに保存しないという
-バリデーションを設定しています。
-つまり、ユーザー登録時に「name」を空欄にして登録しようとすると、エラーが発生する。
+# 問題１１
+# Userモデルに、validates :name, presence: trueを追記します。
+# nameカラムに、presence: trueを設けることで、からの場合はDBに保存しないという
+# バリデーションを設定しています。
+# つまり、ユーザー登録時に「name」を空欄にして登録しようとすると、エラーが発生する。
