@@ -3,20 +3,17 @@
     <%= link_to current_user.name, edit_user_path(current_user)%>
   </div>
   <div class="chat-name">
-    <a herf="#">チャットを作成する</a>
+    <%= link_to "チャットを作成する", new_room_path %>
   </div>
 </div>
 <div class="side-bar-main">
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom1</a>
+  <% current_user.rooms.each do |room|%>
+    <div class="room">
+      <div class="room-name">
+        <a href="#"><%= room.name %></a>
+      </div>
     </div>
-  </div>
-  <div class="room">
-    <div class="room-name">
-      <a href="#">techroom2</a>
-    </div>
-  </div>
+  <% end %>
 </div>
 
 <%# 問題９
@@ -26,3 +23,6 @@ link_toのパスを、ログインしているユーザーの編集をするた�
 edit_user_path(current_user)と指定します。
 current_user.nameはログインしているユーザー名です。
 ユーザー名をクリックすると、usersコントローラーのeditアクションが実行され、編集ページに遷移できる。 %>
+
+<%# 問題７
+チャットルームは複数作成できるので、「eachメソッド」を使って全てのチャットルームに対して同じ処理を繰り返し実行します。 %>
