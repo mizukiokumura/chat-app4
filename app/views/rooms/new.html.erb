@@ -22,7 +22,7 @@
             <option value=<%=user.id%>><%= user.name%></option>
           <% end %>
         </select>
-        <input name="room[user_ids][]" type="hidden" value=<%= cuuren_user.id %>>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
       </div>
     </div>
     <div class='chat-room-form__field'>
@@ -63,3 +63,18 @@ type属性にhiddenを指定することで、画面上には表示されないi
 受け取る仕組みです。value属性にはcurrent_user.idを指定しているため、room[user_ids]キーに対して、
 ログイン中のユーザーのidを配列として格納し、コントローラーへ送信する。この記述の結果、コントローラーへ送られるparamsは以下のようになる。
 {"room" => {"user_ids" => ["選択したユーザーのid", "現在ログインしているユーザーのid"]}} %>
+
+<%# ルームクリエエイト時のparamsの中身
+"room"=>{"name"=> "新規チャット", "user_ids"=> ["1","2"]}
+roomキーに対してハッシュが入っている事がわかります。
+これは、form_withのmodelオプションに@roomを指定したことで、@roomのクラス名である
+「room」がキーとなり、値にはこのフォームから送られるパラメーターがハッシュとして入る使用であるためです。
+
+name => 新規チャットは 言わずものがチャットルーム名が入る
+これは、form_withのブロック変数からフォーム部品を追加しているため、「room」キーの中に「name」キーが入る仕組みになっている。
+user_ids => ["1","2"]
+1つめのキーと異なり、HTMLのselect要素から送られたパラメーターになる。
+「user_ids」キーに「所属ユーザーのid」が「配列」で送信されている。
+
+配列で送信されたのは、name属性に指定した"room[user_ids]""の末尾に
+、[]をつけたためです。railsでは、パラメーター名に[]をつけると、その値を配列で受け取る仕組みになっている。 %>
