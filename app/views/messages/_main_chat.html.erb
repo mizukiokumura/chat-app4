@@ -7,36 +7,7 @@
   </div>
 </div>
 <div class="chat-view">
-  <div class="chat-message">
-    <div class="chat-user-date">
-      <div class="user-name">
-        Tom
-      </div>
-      <div class="date">
-        2021/4/15(木) 10:50
-      </div>
-    </div>
-    <div class="message">
-      <div class="message-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="chat-message">
-    <div class="chat-user-date">
-      <div class="user-name">
-        siom
-      </div>
-      <div class="date">
-        2021/4/15(木) 10:50
-      </div>
-    </div>
-    <div class="message">
-      <div class="message-content">
-        こんにちは
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'message', collection: @messages %>
 </div>
 <%= form_with model: [@room, @message], class: "chat-form", local: true do |f| %>
   <div class="form-input">
@@ -54,3 +25,8 @@
 label要素の役割の１つは、label要素がクリックされた時に、子要素もクリックされたことにしてくれることです。
 この仕組みを使うことで、見えないはずのファイルの選択ボタンをクリックしたかのように動作させる事ができます。
  %>
+
+<%# collectionオプション
+collectionオプジョンは、指定したインスタンス変数の中にある要素の数だけ、部分テンプレートが繰り返し表示されるオプションです。
+collectionオプションを使えば、インスタンスに入っている要素が複数あった場合でも、eachメソッドを使用せずにrenderで繰り返し表示できる。
+<%= render prtial: 'hoge', collection: @fuga(繰り返し表示する要素) > %>

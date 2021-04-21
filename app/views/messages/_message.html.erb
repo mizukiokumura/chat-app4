@@ -1,0 +1,24 @@
+<div class="chat-message">
+  <div class="chat-user-date">
+    <div class="user-name">
+      <%= message.user.name%>
+    </div>
+    <div class="date">
+      <%= message.created_at %>
+    </div>
+  </div>
+  <div class="message">
+    <div class="message-content">
+      <%= message.content%>
+    </div>
+  </div>
+</div>
+
+<%# 問題8
+<%= message.user.name >
+messagesテーブルのuser_idに紐づいているユーザー名を、user.nameと記述することで取得している。
+<%= message.created_at >
+messagesテーブルのcreated_atカラムから、投稿した時刻を取得している。
+ただし、現段階では日本基準の時刻ではない。
+<%= message.content>
+messagesテーブルのcontentカラムから、メッセージの内容を取得している。 %>
