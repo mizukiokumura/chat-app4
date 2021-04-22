@@ -10,7 +10,8 @@ module ChatApp4
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
@@ -23,3 +24,11 @@ module ChatApp4
     end
   end
 end
+
+# application.rbファイル
+# configディレクトリに用意されている、Railsアプリケーションの設定ファイルです。
+# Railsアプリケーションの開発環境全てにおいて共通となる設定を記述します。
+
+# lメソッド
+# 日付や時刻を表示するRailsのメソッド
+# このメソッドを使えば現地時間に対応できる。

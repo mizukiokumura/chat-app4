@@ -1,56 +1,32 @@
 <div class="main-header">
   <div class="chat-group">
-    hogehuga
+    <%= @room.name %>
   </div>
   <div class="chat-delete-btn">
-    <a herf="#">チャットを終了する</a>
+    <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
   </div>
 </div>
 <div class="chat-view">
-  <div class="chat-message">
-    <div class="chat-user-date">
-      <div class="user-name">
-        Tom
-      </div>
-      <div class="date">
-        2021/4/15(木) 10:50
-      </div>
-    </div>
-    <div class="message">
-      <div class="message-content">
-        おはよう
-      </div>
-    </div>
-  </div>
-  <div class="chat-message">
-    <div class="chat-user-date">
-      <div class="user-name">
-        siom
-      </div>
-      <div class="date">
-        2021/4/15(木) 10:50
-      </div>
-    </div>
-    <div class="message">
-      <div class="message-content">
-        こんにちは
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'message', collection: @messages %>
 </div>
-<div class="chat-form">
+<%= form_with model: [@room, @message], class: "chat-form", local: true do |f| %>
   <div class="form-input">
-    <input class="form-message" placeholder = "type a message">
+    <%= f.text_field :content, class: "form-message", placeholder: "type a message" %>
     <label class="form-image">
       <span class="image-file">画像</span>
-      <input type="file" class="hidden">
+      <%= f.file_field :image, class: "hidden" %>
     </label>
   </div>
-  <input class="form-submit" type ="submit" value="送信">
-</div>
+  <%= f.submit "送信", class: "form-submit"%>
+<% end %>
 
 <%#  label要素とは
 フォームの中でフォームの項目名とフォームの入力要素(画像選択フォーム、プルダウン、チェックボックスなど)を関連づけるための要素です
 label要素の役割の１つは、label要素がクリックされた時に、子要素もクリックされたことにしてくれることです。
 この仕組みを使うことで、見えないはずのファイルの選択ボタンをクリックしたかのように動作させる事ができます。
  %>
+
+<%# collectionオプション
+collectionオプジョンは、指定したインスタンス変数の中にある要素の数だけ、部分テンプレートが繰り返し表示されるオプションです。
+collectionオプションを使えば、インスタンスに入っている要素が複数あった場合でも、eachメソッドを使用せずにrenderで繰り返し表示できる。
+<%= render prtial: 'hoge', collection: @fuga(繰り返し表示する要素) > %>
